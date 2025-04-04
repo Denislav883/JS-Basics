@@ -2,31 +2,25 @@ function cake(input) {
     let width = Number(input[0]);
     let length = Number(input[1]);
     let cakePiecesCount = width * length;
-    let takenPieces = 0;
 
     let index = 2;
-    let command = Number(input[index]);
+    let command = input[index];
     index++;
 
     while (command !== "STOP") {
         let piecesTaking = Number(command);
-        takenPieces += piecesTaking;
+        cakePiecesCount -= piecesTaking;
 
-
-        if (takenPieces > cakePiecesCount) {
-            console.log(`No more cake left! You need ${takenPieces - cakePiecesCount} pieces more.`);
+        if (cakePiecesCount < 0) {
+            console.log(`No more cake left! You need ${Math.abs(cakePiecesCount)} pieces more.`);
             break;
-    }
+        }
 
-        command = Number(input[index]);
+        command = input[index];
         index++;
     }
 
-    
-    if(cakePiecesCount >= takenPieces){
-        console.log(`${cakePiecesCount - takenPieces} pieces are left.`);
-    }
-
+    console.log(`${cakePiecesCount} pieces are left.`);
 }
 
 cake((["10",
